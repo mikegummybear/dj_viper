@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name viper.local;
+    server_name 192.168.56.114 viper.local;
 
     # location = /favicon.ico { access_log off; log_not_found off; }
     location /static/ {

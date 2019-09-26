@@ -5,6 +5,7 @@ SECRET_KEY = '84dfb51412774dcab2219d05a37a69fb)32=d21d&423$3221dfkkeQQssf?>'
 
 ALLOWED_HOSTS = [
     'viper.local',
+    '192.168.56.114',
 ]
 
 
