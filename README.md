@@ -47,8 +47,11 @@ sudo cp -r var/etc/systemd/system/viper-celery* /etc/systemd/system/
 systemctl daemon-reload
 ```
 
-You will need to reload the systemctl service whenever you make changes to
-the celery service files.
+**NOTE:**
+
+When you make changes to the celery service files, you will need to copy
+them again to the `/etc/systemd/system` folder and reload the systemctl
+daemon.
 
 Reference: http://docs.celeryproject.org/en/latest/userguide/daemonizing.html#usage-systemd
 
@@ -56,3 +59,15 @@ Reference: http://docs.celeryproject.org/en/latest/userguide/daemonizing.html#us
 5) Setup nginx gunicorn
 
 To do
+
+
+6) Start the celery services
+
+```
+systemctl start viper-celery.service
+systemctl start viper-celerybeat.service
+```
+
+There are also: stop and restart commands
+
+Whenever you make code changes, you will need to restart the celery services.
