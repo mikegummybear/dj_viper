@@ -13,24 +13,18 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(
+    os.path.dirname(
+        os.path.dirname(os.path.abspath(__file__))
+    )
+)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ho*6)u84ekf-j%6a(z&3msc6#ac8+mxcd4!b))fieve*75%xxb'
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = [
-    '0.0.0.0',
-    '127.0.0.1',
-    'localhost',
-]
-
+DEBUG = False
 
 # Application definition
 
@@ -79,48 +73,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'viper.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'viper',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': '0.0.0.0',
-        'PORT': '5434',
-    }
-}
-
-
-# Caching
-# https://docs.djangoproject.com/en/2.2/ref/settings/#caches
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://0.0.0.0:6381/1',
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        },
-        'KEY_PREFIX': 'viper_rd_cache',
-    }
-}
-CACHE_TTL = 60 * 15  # 15 mins
-
-# Cache Usage Guide:
-# https://docs.djangoproject.com/en/2.2/topics/cache/#the-per-view-cache
-
-
 # Celery integration settings
 
 # Use the database as results backend
 CELERY_RESULT_BACKEND = 'django-db'
-
-# Use redis as broker. Note that the DB used should be different from the
-# the one the CACHE is using.
-CELERY_BROKER_URL = 'amqp://@0.0.0.0:5674'
 
 # Use the database as scheduler
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
@@ -131,16 +87,28 @@ CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation'
+            '.UserAttributeSimilarityValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation'
+            '.MinimumLengthValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation'
+            '.CommonPasswordValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation'
+            '.NumericPasswordValidator'
+        ),
     },
 ]
 
