@@ -41,6 +41,8 @@ pip install -r requirements.txt
 
 4) Setup the celery systemd service
 
+Copy all systemd service files to the system settings
+
 ```
 cd /srv/src/dj_viper/
 sudo cp -r var/etc/systemd/system/viper-celery* /etc/systemd/system/
@@ -53,8 +55,6 @@ When you make changes to the celery service files, you will need to copy
 them again to the `/etc/systemd/system` folder and reload the systemctl
 daemon.
 
-Reference: http://docs.celeryproject.org/en/latest/userguide/daemonizing.html#usage-systemd
-
 
 5) Setup nginx gunicorn
 
@@ -64,14 +64,36 @@ Make sure user is part of www-data group
 sudo usermod -aG www-data pydev
 ```
 
+Copy the nginx sites
 
-6) Start the celery services
+```
+cd /srv/src/dj_viper/
+sudo cp var/etc/nginx/sites-available/viper /etc/nginx/sites-available/
+sudo ln -s /etc/nginx/sites-available/viper /etc/nginx/sites-enabled/viper
+```
+
+
+6) Start the gunicorn and celery services
 
 ```
 systemctl start viper-celery.service
 systemctl start viper-celerybeat.service
+
+systemctl start viper-gunicorn.sock
+systemctl enable viper-gunicorn.sock
 ```
 
 There are also: stop and restart commands
 
 Whenever you make code changes, you will need to restart the celery services.
+
+References:
+
+Celery Daemonizing
+
+- http://docs.celeryproject.org/en/latest/userguide/daemonizing.html#usage-systemd
+
+Django Gunicorn / NGINX
+
+- https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-18-04#creating-systemd-socket-and-service-files-for-gunicorn
+- https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-18-04#configure-nginx-to-proxy-pass-to-gunicorn

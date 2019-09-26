@@ -1,0 +1,21 @@
+server {
+    listen 80;
+    server_name viper.local;
+
+    # location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /srv/src/dj_viper/viper;
+    }
+
+    location /static/admin {
+        alias /home/pydev/.pyenv/versions/viper/lib/python3.6/site-packages/django/contrib/admin/static/admin;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/srv/src/dj_viper/var/run/gunicorn.sock;
+    }
+
+    access_log /srv/src/dj_viper/var/log/nginx/access.log
+    error_log /srv/src/dj_viper/var/log/nginx/error.log
+}
