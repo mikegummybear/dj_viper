@@ -81,6 +81,8 @@ systemctl start viper-celerybeat.service
 
 systemctl start viper-gunicorn.sock
 systemctl enable viper-gunicorn.sock
+
+systemctl restart nginx
 ```
 
 There are also: stop and restart commands

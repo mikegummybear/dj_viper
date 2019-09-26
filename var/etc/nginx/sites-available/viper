@@ -16,6 +16,6 @@ server {
         proxy_pass http://unix:/srv/src/dj_viper/var/run/gunicorn.sock;
     }
 
-    access_log /srv/src/dj_viper/var/log/nginx/access.log
-    error_log /srv/src/dj_viper/var/log/nginx/error.log
+    access_log /srv/src/dj_viper/var/log/nginx/access.log;
+    error_log /srv/src/dj_viper/var/log/nginx/error.log;
 }
