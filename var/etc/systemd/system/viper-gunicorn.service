@@ -1,6 +1,6 @@
 [Unit]
 Description=Viper Gunicorn Service
-Requires=gunicorn.socket
+Requires=viper-gunicorn.socket
 After=network.target
 
 [Service]

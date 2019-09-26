@@ -19,3 +19,4 @@ django-redis
 # Other utils
 ipython
 requests
+gunicorn
