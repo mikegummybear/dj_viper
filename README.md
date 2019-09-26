@@ -58,7 +58,11 @@ Reference: http://docs.celeryproject.org/en/latest/userguide/daemonizing.html#us
 
 5) Setup nginx gunicorn
 
-To do
+Make sure user is part of www-data group
+
+```
+sudo usermod -aG www-data pydev
+```
 
 
 6) Start the celery services

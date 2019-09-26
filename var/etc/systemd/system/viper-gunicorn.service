@@ -1,0 +1,18 @@
+[Unit]
+Description=Viper Gunicorn Service
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=pydev
+Group=www-data
+EnvironmentFile=/srv/src/dj_viper/var/etc/conf.d/gunicorn
+WorkingDirectory=/srv/src/dj_viper/viper
+ExecStart=/home/pydev/.pyenv/versions/viper/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/srv/src/dj_viper/var/run/gunicorn.sock \
+          viper.wsgi:application
+
+[Install]
+WantedBy=multi-user.target

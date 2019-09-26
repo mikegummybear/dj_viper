@@ -13,7 +13,7 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault(
     'DJANGO_SETTINGS_MODULE', 'viper.settings.{}'.format(
-        os.environ.get('APP_ENV', 'dev'))
+        os.environ.get('APP_ENV', 'prod'))
 )
 
 application = get_wsgi_application()

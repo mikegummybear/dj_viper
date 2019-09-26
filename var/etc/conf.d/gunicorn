@@ -1,0 +1,4 @@
+# App instance to use
+APP_ENV="prod"
+PYTHONPATH="/srv/src/dj_viper/viper"
+DJANGO_SETTINGS_MODULE="viper.settings.prod"

@@ -5,6 +5,7 @@ __pycache__
 *~
 *.pid
 *.log
+*.sock
 
 var/lib/postgres
 var/lib/redis

@@ -10,6 +10,7 @@ CELERY_BIN="/home/pydev/.pyenv/versions/viper/bin/celery"
 
 # App instance to use
 # comment out this line if you don't use an app
+APP_ENV="prod"
 PYTHONPATH="/srv/src/dj_viper/viper"
 DJANGO_SETTINGS_MODULE="viper.settings.prod"
 CELERY_APP="viper.celery:app"

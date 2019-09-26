@@ -1,0 +1,8 @@
+[Unit]
+Description=Viper Gunicorn Socket
+
+[Socket]
+ListenStream=/srv/src/dj_viper/var/run/gunicorn.sock
+
+[Install]
+WantedBy=sockets.target
