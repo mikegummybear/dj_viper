@@ -13,6 +13,11 @@ To do
 
 1) Clone project to /srv/src/
 
+```
+cd /srv/src/
+git clone https://github.com/codehappyph/dj_viper.git
+```
+
 
 2) Create virtualenv called `viper` and set it as local python version
   for the project directory
@@ -30,7 +35,7 @@ Whenever you are inside the project folder, the virtualenv, `viper`, will
 always be activated by default.
 
 ```
-cd /srv/src/dj_viper/viper/
+cd /srv/src/dj_viper/
 pip install -r requirements.txt
 ```
 
