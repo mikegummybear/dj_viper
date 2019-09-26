@@ -1,0 +1,21 @@
+django
+
+psycopg2  # requires `libpq-dev` and `postgres` on linux
+redis  # requires `redis` on linux
+
+# Django REST Framework
+djangorestframework
+markdown
+django-filter
+
+# Celery + Django integrations
+celery
+django-celery-results
+django-celery-beat
+
+# Redis cache integration
+django-redis
+
+# Other utils
+ipython
+requests

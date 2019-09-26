@@ -1,0 +1,35 @@
+version: '3.5'
+
+services:
+
+    postgres:
+        restart: always
+        image: postgres:10
+        volumes:
+            - ./var/lib/postgres:/var/lib/postgresql/data/
+        env_file:
+            - ./var/etc/pgsql.env
+        container_name: viper_pg
+        ports:
+            - "5434:5432"
+
+    redis:
+        restart: always
+        image: redis:5
+        volumes:
+            - ./var/lib/redis:/data
+        container_name: viper_rd
+        ports:
+            - "6381:6379"
+
+    rabbitmq:
+        restart: always
+        image: rabbitmq:3
+        volumes:
+            - ./var/lib/rabbitmq:/var/lib/rabbitmq/mnesia/rabbit@viper_rq
+        env_file:
+            - ./var/etc/rabbitmq.env
+        container_name: viper_rq
+        hostname: "viper_rq"
+        ports:
+            - "5674:5672"

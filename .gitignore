@@ -1,0 +1,11 @@
+.python-version
+*.py[cod]
+__pycache__
+*.swap
+*~
+*.pid
+*.log
+
+var/lib/postgres
+var/lib/redis
+var/lib/rabbitmq
