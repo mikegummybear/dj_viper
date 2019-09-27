@@ -51,3 +51,14 @@ CACHE_TTL = 60 * 15  # 15 mins
 # Use redis as broker. Note that the DB used should be different from the
 # the one the CACHE is using.
 CELERY_BROKER_URL = 'amqp://@0.0.0.0:5674'
+
+
+# LOGGING CONFIGURATION
+# https://docs.djangoproject.com/en/dev/topics/logging/
+LOGGING['handlers']['file']['level'] = 'DEBUG'
+
+LOGGING['loggers']['django.request']['handlers'] += ['console', 'file']
+LOGGING['loggers']['django.request']['level'] = 'DEBUG'
+
+LOGGING['loggers']['default']['handlers'] += ['console']
+LOGGING['loggers']['default']['level'] = 'DEBUG'

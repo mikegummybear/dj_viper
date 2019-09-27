@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+SITE_NAME = 'viper'
 BASE_DIR = os.path.dirname(
     os.path.dirname(
         os.path.dirname(os.path.abspath(__file__))
@@ -131,3 +132,76 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# LOGGING CONFIGURATION
+# https://docs.djangoproject.com/en/2.2/topics/logging/
+LOG_FILE = os.path.join(
+    os.path.dirname(BASE_DIR), 'var', 'log', '{}_app.log'.format(SITE_NAME))
+
+if not os.path.exists(LOG_FILE):
+    (open(LOG_FILE, 'w').write('')).close()
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': (
+                '[%(asctime)s] %(levelname)s %(name)s %(pathname)s '
+                '%(lineno)d - %(message)s'
+            )
+        },
+        'simple': {
+            'format': '[%(asctime)s] %(levelname)s %(module)s - %(message)s'
+        },
+    },
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': LOG_FILE,
+            'maxBytes': 1024*1024*10,  # 10 megabytes
+            'backupCount': 10,
+            'formatter': 'verbose'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': True,
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'mail_admins'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'default': {
+            'handlers': ['file', 'mail_admins'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
